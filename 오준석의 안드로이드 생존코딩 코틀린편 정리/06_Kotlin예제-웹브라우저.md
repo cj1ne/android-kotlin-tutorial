@@ -10,7 +10,7 @@
 
 <h2>Kotlin 예제 - 웹 브라우저</h2>
 
- 책에서는 레이아웃을 Design을 통해 구현하였지만 여기에서는 Text를 통해 구현하였습니다. 예제에서는 **UI 및 기능 명세만 정의**하고 공부를 위해 직접 구현해보시길 바랍니다.  **구현에 필요한 내용은 아래에 정리**하였으며 어려움이 생길 경우에는 [WebBrowser 소스코드](https://github.com/cj1ne/android-kotlin-tutorial/tree/master/%EC%98%A4%EC%A4%80%EC%84%9D%EC%9D%98%20%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%83%9D%EC%A1%B4%EC%BD%94%EB%94%A9%20%EC%BD%94%ED%8B%80%EB%A6%B0%ED%8E%B8%20%EC%A0%95%EB%A6%AC/04_Kotlin%EC%98%88%EC%A0%9C-%EB%B9%84%EB%A7%8C%EB%8F%84%EA%B3%84%EC%82%B0%EA%B8%B0)를 참고하시길 바랍니다.
+ 책에서는 레이아웃을 Design을 통해 구현하였지만 여기에서는 Text를 통해 구현하였습니다. 예제에서는 **UI 및 기능 명세만 정의**하고 공부를 위해 직접 구현해보시길 바랍니다.  **구현에 필요한 내용은 아래에 정리**하였으며 어려움이 생길 경우에는 [WebBrowser 소스코드](https://github.com/cj1ne/android-kotlin-tutorial/tree/master/%EC%98%A4%EC%A4%80%EC%84%9D%EC%9D%98%20%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20%EC%83%9D%EC%A1%B4%EC%BD%94%EB%94%A9%20%EC%BD%94%ED%8B%80%EB%A6%B0%ED%8E%B8%20%EC%A0%95%EB%A6%AC/06_Kotlin%EC%98%88%EC%A0%9C-%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80)를 참고하시길 바랍니다.
 
 <br>
 
@@ -203,7 +203,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 </menu>
 ```
 
-앞서 생성한 **main.xml** 파일에 메뉴를 구성하기 위해서 위와 같이 코드를 작성합니다. 기능 명세 4), 5) 항목의 사진과 같이 **검색사이트**와 **개발자정보** **메뉴에** 각각 [네이버, 구글, 다음]과 [전화하기, 문자 보내기, 이메일 보내기]  아이템이 추가되도록 한 것 입니다.  마지막 아이템은 기능 명세 2) 를 만들기 위한 것이며 **ifRoom** 속성은 공간에 여유가 있을 때 아이콘을 노출시키는 것을 의미합니다.
+앞서 생성한 **main.xml** 파일에 메뉴를 구성하기 위해서 위와 같이 코드를 작성합니다. [기능 명세](06_Kotlin예제-웹브라우저.md#기능-명세) 4), 5) 항목의 사진과 같이 **검색사이트**와 **개발자정보** **메뉴에** 각각 [네이버, 구글, 다음]과 [전화하기, 문자 보내기, 이메일 보내기]  아이템이 추가되도록 한 것 입니다.  마지막 아이템은 기능 명세 2) 를 만들기 위한 것이며 **ifRoom** 속성은 공간에 여유가 있을 때 아이콘을 노출시키는 것을 의미합니다.
 
 <br>
 
@@ -280,7 +280,7 @@ override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 </menu>
 ```
 
-menu 디렉터리에서 마우스 우클릭 후 `New → Menu resource file`을 선택합니다. File name에 **context**을 입력하고 **OK**를 클릭합니다. XML 파일이 생성되면 기능 명세 6) 과 같이 메뉴를 구성하기 위해 위의 코드를 입력합니다.
+menu 디렉터리에서 마우스 우클릭 후 `New → Menu resource file`을 선택합니다. File name에 **context**을 입력하고 **OK**를 클릭합니다. XML 파일이 생성되면 [기능 명세](06_Kotlin예제-웹브라우저.md#기능-명세) 6) 과 같이 메뉴를 구성하기 위해 위의 코드를 입력합니다.
 
 <br>
 
