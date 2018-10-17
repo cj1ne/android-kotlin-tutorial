@@ -29,14 +29,14 @@
 
   ```
   var a:Int = 10 //var 변수명: 자료형 = 값
-  val b:Int = 10 //var 상수명: 자료형 = 값  
+  val b:Int = 10 //val 상수명: 자료형 = 값  
   ```
 
   Kotlin은 자료형을 지정하지 않아도 추론하기 때문에 **생략할 수 있습니다.**<br>
 
   ```
   var a = 10 // 변수 var a:Int  
-  val b = 10 // 상수 var b:Int (재할당 불가)
+  val b = 10 // 상수 val b:Int (재할당 불가)
   ```
 
   <br><br>
