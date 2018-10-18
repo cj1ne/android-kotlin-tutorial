@@ -27,16 +27,16 @@
 - **변수와 상수**
   <br><br>Kotlin에서 변수는 **var**로 상수는 **val**로 선언합니다. val은 자바의 **final** 키워드와 동일합니다.<br>
 
-  ```
+  ```kotlin
   var a:Int = 10 //var 변수명: 자료형 = 값
-  val b:Int = 10 //var 상수명: 자료형 = 값  
+  val b:Int = 10 //val 상수명: 자료형 = 값  
   ```
 
   Kotlin은 자료형을 지정하지 않아도 추론하기 때문에 **생략할 수 있습니다.**<br>
 
   ```
   var a = 10 // 변수 var a:Int  
-  val b = 10 // 상수 var b:Int (재할당 불가)
+  val b = 10 // 상수 val b:Int (재할당 불가)
   ```
 
   <br><br>
@@ -47,7 +47,7 @@
   <br>`fun 함수명(인수1: 자료형, 인수2: 자료형 … ): 반환자료형`<br><br>
   Kotlin에서 반환값이 없을 때 **Unit**형을 사용하며 이는 **Java의 void**에 대응합니다. 반환 값이 Unit인 경우에는 생략할 수 있습니다.<br>
 
-  ```
+  ```kotlin
   fun printKotlin(): Unit {
      println("hello kotlin!")
   }
@@ -65,7 +65,7 @@
   코틀린의 기본 자료형은 모두 객체입니다. Java가 프리미티브 자료형(int, double 등)과 객체 자료형으로 분류되는 것과는 다릅니다.<br><br>
   코틀린에서 숫자를 표현하는 자료형은 다음과 같으며 코틀린 컴파일러는 자료형을 추론합니다.
 
-
+  <br>
 
   - **Double** : 64비트 부동소수점  
   - **Float** : 32비트 부동 소수점  
@@ -79,14 +79,14 @@
   <br><br>
   Kotlin에서 문자를 나타내는 자료형은 다음과 같이 두가지 이며 Char가 숫자형이 아니라는 점이 Java와 다릅니다.<br>
 
-  ```
+  ```kotlin
   String : 문자열
   Char : 하나의 문자
   ```
 
   <br>여러 줄에 걸쳐 문자열을 표현할 때는 큰따옴표 3개를 리터럴로 사용합니다.<br>
 
-  ```
+  ```kotlin
   val str = """오늘은
   	  날씨가 좋습니다.
   	  빨래를 합시다.
@@ -95,7 +95,7 @@
 
   <br>문자열 비교는 ==을 사용하며 Java의 equls() 메서드와 대응합니다. **Java에서 == 를 오브젝트 비교** 시에 사용하는데 **Kotlin에서는 오브젝트 비교 시에는** `===` 을 사용합니다.<br>
 
-  ```
+  ```kotlin
   var str = "hello"
   if (str == "hello") {
   	 println("안녕하세요")
@@ -108,7 +108,7 @@
 
   문자열 템플릿 기능을 사용하면 `+` 기호로 문자열을 연결할 수 있고 `$ `기호를 사용해서 문자열 리터럴 내부에 변수를 쉽게 포함할 수 있습니다.<br>
 
-  ```
+  ```kotlin
   val str = "반갑"
   println(str + "습니다")          // Java와 동일
   
@@ -127,7 +127,7 @@
 
   배열은 **Array**라는 별도의 타입으로 표현하며 `arrayOf( )` 메서드를 사용하여 생성과 초기화를 함께 수행합니다. 자료형을 유추할 수 있을 때는 이를 생략할 수 있으며 배열 요소에 접근하는 것은 `[ ]`를 이용합니다.
 
-  ```
+  ```kotlin
   val numbers:Array<Int> = arrayOf(1,2,3,4,5)
   val numbers2 = arrayOf(1,2,3,4,5)  // 자료형 생략
   numbers[0] = 5    // [5,2,3,4,5]
@@ -147,7 +147,7 @@
 
   `when`은 Java의 **switch**에 해당합니다. 콤마와 in 연산자를 이용해 값의 범위를 자유롭게 지정할 수 있습니다.
 
-  ```
+  ```kotlin
   val x = 1
   
   when(x) {
@@ -169,7 +169,7 @@
 
   for문은 Java의 foreacn문과 비슷하며 `..` 연산자, `in` 키워드, `downTo` 키워드, `step` 키워드로 배열이나 컬렉션을 순회할 수 있습니다. 
 
-  ```
+  ```kotlin
   var numbers = arrayOf(1,2,3,4,5)
   
   for(num in numbers){
@@ -203,7 +203,7 @@
 
   Java에서는 new 키워드로 객체를 생성하지만 Kotlin은 new 키워드를 사용하지 않습니다. 또한  Java는 변수를 선언만 해도 null이나 0으로 초기화해주었지만 Kotlin에서는  **반드시 초기화를 직접 해주어야 합니다.**
 
-  ```
+  ```kotlin
   // 클래스 선언
   class Shape {
   	var x:Int = 0
@@ -224,7 +224,7 @@
 
   생성자는 `constructor` 키워드를 사용하여 표현하고 클래스명 옆에 선언한 생성자를 **기본생성자**라고 합니다. 기본생성자의 경우 constructor 키워드를 붙이지 않고도 표현할 수 있습니다.
 
-  ```
+  ```kotlin
   class Shape constructor(x:Int, y:Int) {
   	var x:Int = x
   	var y:Int = y
@@ -245,7 +245,7 @@
 
   기본 생성자 이외에도 다른 생성자들을 만들기 위해서는 constructor 키워드를 사용하여 체인형식으로 메서드처럼 선언합니다.
 
-  ```
+  ```kotlin
   class Shape(x:Int, y:Int) {
   	var x:Int = x
   	var y:Int = y
@@ -264,7 +264,7 @@
 
   Kotlin에서는 생성자 이외에도 init 블록에 작성한 코드가 클래스를 인스턴스화할 때 가장 먼저 초기화됩니다.
 
-  ```
+  ```kotlin
   class Shape(x: Int, y: Int) {
       var x: Int = x
       var y: Int = y
@@ -290,7 +290,7 @@
 
   클래스의 속성을 사용할 때는 멤버에 직접 접근하며 이를 **프로퍼티**라고 합니다. Java와 다르게 private 접근지정자로 은닉화된 멤버 변수에도 게터/세터 메서드 없이 프로퍼티로 대체할 수 있습니다.
 
-  ```
+  ```kotlin
   // 클래스 선언
   class Person(var name:String) {
       
@@ -321,7 +321,7 @@
   - **protected** : 상속받은 클래스에서 사용할 수 있습니다.
 
 
-```
+```kotlin
   class A {
       val a = 1	// public
       private val b =2
@@ -338,7 +338,7 @@
 
   Kotlin에서의 클래스는 기본적으로 상속이 금지되므로 상속이 가능하게 하려면 `open` 키워드를 클래스 선언 앞에 추가합니다.
 
-  ```
+  ```kotlin
   open class Animal {
       
   }
@@ -350,7 +350,7 @@
 
   만약 상속받을 클래스가 생성자를 가지고 있다면 다음과 같이 상속받을 수 있습니다.
 
-  ```
+  ```kotlin
   open class Animal(val name: String) {
       
   }
@@ -368,7 +368,7 @@
 
   내부 클래스 선언에는 `inner` 키워드를 사용합니다. 내부 클래스는 외부 클래스에 대한 참조를 가지고 있으므로 아래 코드에서 inner 키워드가 없다면 a를 변경할 수 없습니다.
 
-  ```
+  ```kotlin
   class OutClass {
       var a = 10
       
@@ -389,7 +389,7 @@
 
   추상 클래스는 미구현 메서드가 포함된 클래스를 말합니다. Java와 거의 동일하며 클래스와 미구현 메서드 앞에 `abstract` 키워드를 붙입니다. 추상 클래스는 직접 인스턴스화할 수 없고 다른 클래스가 상속하여 미구현 메서드를 구현해야합니다.
 
-  ```
+  ```kotlin
   abstract class A {
       abstract fun func()
       

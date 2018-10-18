@@ -95,7 +95,7 @@
 
 2. dependencies 항목에 Anko 라이브러리를 추가합니다.
 
-   ```
+   ```kotlin
    dependencies{
        implementation "org.jetbrains.anko:anko:$anko_version"
    }
@@ -105,7 +105,7 @@
 
 4. buildscript 블록에 Anko 라이브러리 버전을 변수에 지정합니다.
 
-   ```
+   ```kotlin
    ext.anko_version = '0.10.5'
    ```
 
@@ -123,7 +123,7 @@
 
 xml 파일에서 버튼의 id가  `android:id="@+id/resultButton"`와 같이 설정되어 있다면 버튼 클릭 이벤트 리스너는 다음과 같이 설정할 수 있습니다. Java에 비해 코드가 간결해진 것을 확인할 수 있습니다.
 
-```
+```kotlin
 resultButton.setOnClickListener{
     // 버튼이 클릭되면 할 일을 작성하는 부분
 }
@@ -139,7 +139,7 @@ resultButton.setOnClickListener{
 
 액티비티를 전환은 다음과 같이 수행할 수 있습니다. 현재 액티비티는 MainActivity이고  ResultActivity로 이동하는 것을 가정하겠습니다.
 
-```
+```kotlin
 // Intent(현재 액티비티, 전환할 액티비티)
 
 var intent = Intent(this, ResultActivity::class.java)
@@ -150,7 +150,7 @@ startActivity(intent)
 
 하지만 자주 사용하는 코드 치고는 타이핑양이 적지 않습니다. 이 부분을 Anko 라이브러리를 사용하면 다음과 같이 간단하게 작성할 수 있습니다.
 
-```
+```kotlin
 startActivity<ResultActivity>()
 ```
 
@@ -170,7 +170,7 @@ startActivity<ResultActivity>()
 
 2. 두 번째 액티비티에 **parentActivityName** 속성을 추가합니다.
 
-   ```
+   ```kotlin
    // 부모 액티비티 지정
    <activity 
        android:name=".ResultActivity"	// 현재 액티비티
@@ -188,7 +188,7 @@ startActivity<ResultActivity>()
 
 인텐트는 데이터를 담아서 다른 액티비티에 전달하는 역할도 수행하며 코드는 다음과 같습니다.
 
-```
+```kotlin
 var intent = Intent(this, ResultActivity::class.java)
 
 // intent.putExtra(키, 값)
@@ -199,7 +199,7 @@ startActivity(intent)
 
 Anko를 적용하면 좀 더 간단히 작성할 수 있습니다.
 
-```
+```kotlin
 startActivity<ResultActivity>(
       "weight" to weightEditText.text.toString(),
       "height" to heightEditText.text.toString()
@@ -216,7 +216,7 @@ startActivity<ResultActivity>(
 
 인텐트에서 데이터를 꺼내려면 `get~~Extra()` 메서드를 사용합니다. 전달받은 데이터가 문자열인 경우 `getStringExtra( )` 메서드를 사용합니다.
 
-```
+```kotlin
 // intent.get~~Extra("키")
 val height = intent.getStringExtra("height").toInt()
 val weight = intent.getStringExtra("weight").toInt()
@@ -232,13 +232,13 @@ val weight = intent.getStringExtra("weight").toInt()
 
 Java에서 사용하던 토스트 코드도 Kotlin에서 다음과 같이 사용이 가능합니다.
 
-```
+```kotlin
 Toast.makeText(this, "$bmi", Toast.LENGTH_SHORT).show()
 ```
 
 그러나 Anko를 적용하면 다음과 같이 줄일 수 있습니다.
 
-```
+```kotlin
 toast("$bmi")
 ```
 
@@ -254,7 +254,7 @@ toast("$bmi")
 
 <h4>데이터 저장하기</h4>
 
-```
+```kotlin
 private fun saveData(height: Int, weight: Int)
 {
     val pref = PreferenceManager.getDefaultSharedPreferences(this) // (1)
@@ -277,7 +277,7 @@ private fun saveData(height: Int, weight: Int)
 
 <h4>데이터 불러오기</h4>
 
-```
+```kotlin
 private fun loadData()
 {
     val pref = PreferenceManager.getDefaultSharedPreferences(this)  // (1)

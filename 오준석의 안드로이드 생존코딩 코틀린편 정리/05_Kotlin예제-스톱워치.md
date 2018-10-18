@@ -115,7 +115,7 @@
 
 **FloatingActionButton** 버튼의 배경에 벡터 이미지를 사용합니다. 안드로이드 5.0 미만의 기기에서도 벡터 이미지가 잘 표시되도록 모듈 수준의 gradle 파일에 다음 코드를 추가합니다.
 
-```
+```kotlin
 defaultConfig{
     vectorDrawables.useSupportLibrary = true
 }
@@ -159,7 +159,7 @@ Asset Studio에서 **Clip Art**를 클릭한 후에 `pause`, `play arrow`, `refr
 
 <h4>타이머 시작</h4>
 
-```
+```kotlin
 private var time = 0  // 시간을 계산하는 변수
 private var timeTask: Timer? = null // null을 허용하는 Timer
 
@@ -185,7 +185,7 @@ private fun start() {
 
 <h4>타이머 일시정지</h4>
 
-```
+```kotlin
 private fun pause(){
         playFab.setImageResource(R.drawable.ic_play_arrow_black_24dp)
 
@@ -199,7 +199,7 @@ private fun pause(){
 
 <h4>타이머 초기화</h4>
 
-```
+```kotlin
 private fun reset(){~~
     timerTask?.cancel()
 
@@ -226,7 +226,7 @@ private fun reset(){~~
 
 ScrollView 내부에 있는 LinearLayout에 타임 랩을 추가 하기 위해 다음과 같이 코드를 작성합니다. 이 때 새롭게 생성된 타임 랩이 항상 ScrollView의 제일 위에 올 수 있도록 `addView( )`메서드의 **두 번째 인자**에 0을 추가합니다.
 
-```
+```kotlin
 val textView = TextView(this)
 textView.text = "LAB : ${lapTime/100}.${lapTime%100}"
 lapLayout.addView(textView, 0)

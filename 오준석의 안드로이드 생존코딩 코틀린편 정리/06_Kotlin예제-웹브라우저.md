@@ -80,7 +80,7 @@
 
 안드로이드에서는 특정 권한이 필요한 동작을 할 때는 **권한을 추가해야**하며, 웹 뷰에 웹 페이지를 표시하려면 인터넷이 필요하므로 인터넷 사용 권한을 추가합니다. 프로젝트에서 **AndroidManifest.xml**파일을 열고 다음과 같이 권한을 추가합니다.
 
-```
+```kotlin
 <manifest...>
 	...
 	  <uses-permission android:name="android.permission.INTERNET"/>
@@ -94,7 +94,7 @@
 
 <h3>웹뷰 기본 설정</h3>
 
-```
+```kotlin
 webView.apply {
     settings.javaScriptEnabled = true
     webViewClient = WebViewClient()
@@ -111,7 +111,7 @@ webView.loadUrl("https://www.google.com")
 
 <h3>키보드의 검색 버튼 동작 정의</h3>
 
-```
+```kotlin
 urlEditText.setOnEditorActionListener { _, actionId, _ -> // (1)
     if (actionId == EditorInfo.IME_ACTION_SEARCH) {       // (2)
         webView.loadUrl(urlEditText.text.toString())      // (3)
@@ -130,7 +130,7 @@ urlEditText.setOnEditorActionListener { _, actionId, _ -> // (1)
 
 <h3>뒤로가기 동작 재정의</h3>
 
-```
+```kotlin
 override fun onBackPressed() {
     if(webView.canGoBack()){
         webView.goBack()
@@ -164,7 +164,7 @@ Resource type을 **menu**로 선택하고 **OK**를 클릭합니다. 프로젝�
 
 <h4>2. 메뉴 작성</h4>
 
-```
+```kotlin
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -211,7 +211,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 
 액티비티에서 다음과 같이 `onCreateOptionsMenu( )` 메서드를 오버라이드하여 메뉴 리소스 파일을 지정하면 메뉴가 표시됩니다.
 
-```
+```kotlin
 override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     menuInflater.inflate(R.menu.main, menu)
     return true
@@ -224,7 +224,7 @@ override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
 옵션 메뉴를 선택했을 때의 이벤트를 처리하려면 다음과 같이 `onOptionsItemSelected( ) 메서드`를 오버라이드하여 메뉴 아이템의 ID로 구분해 처리합니다.
 
-```
+```kotlin
 override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when(item?.itemId) {
         R.id.action_google, R.id.action_home -> {
@@ -266,7 +266,7 @@ override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
 특정 뷰를 길게 클릭하면 메뉴가 표시되는 **컨텍스트 메뉴**의 리소스 파일 생성 및 작성 과정은 앞서 살펴 본 옵션 메뉴와 거의 동일합니다.
 
-```
+```kotlin
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
@@ -288,7 +288,7 @@ menu 디렉터리에서 마우스 우클릭 후 `New → Menu resource file`을 
 
 액티비티에서 다음과 같이 `onCreateContextMenu( )` 메서드를 오버라이드하여 메뉴 리소스 파일을 지정하면 메뉴가 표시됩니다. 옵션 메뉴의 `onCreaeteOptionsMenu( )` 메서드와 메서드 이름에 약간의 차이가 있습니다.
 
-```
+```kotlin
 override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
     super.onCreateContextMenu(menu, v, menuInfo)
     menuInflater.inflate(R.menu.context, menu)
@@ -297,7 +297,7 @@ override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: Context
 
 그 다음 **컨테스트 메뉴가 표시될 대상 뷰를 지정**해야합니다. 이 예제에서 액티비티가 main 액티비티밖에 존재하지 않으므로 MainActivity.kt 파일의 onCreate() 메서드에 다음과 같은 코드를 추가합니다.
 
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
@@ -315,7 +315,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 옵션 메뉴의 클릭 이벤트 처리와 동일하게 `onCotextItemSelected( )`메서드를 오버라이드하여 메뉴 아이템의 ID로 구분해 처리합니다.
 
-```
+```kotlin
 override fun onContextItemSelected(item: MenuItem?): Boolean {
     when(item?.itemId)
     {
@@ -342,7 +342,7 @@ override fun onContextItemSelected(item: MenuItem?): Boolean {
 
 안드로이드에는 미리 정의된 인텐트들이 있고 이를 **암시적 인텐트**라고 합니다. 다음은 웹 브라우저에서 해당 url의 페이지를 여는 코드이며, 암시적 인텐트는 대부분 이러한 형태를 하고 있습니다.
 
-```
+```kotlin
 var intent = Intent(Intent.ACTION_VIEW)
 intent.data = Uri.parse("https://www.google.co.kr")
 if (intent.resolveActivity(packageManager) != null) {
