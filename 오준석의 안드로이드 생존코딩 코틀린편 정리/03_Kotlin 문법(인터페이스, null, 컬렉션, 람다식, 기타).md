@@ -217,7 +217,7 @@ Kotlin은 기본적으로 객체를 불변으로 보고 null값을 허용하지 
   요소를 변경하는 리스트를 작성할 때는 `mutableListOf( )` 메서드를 사용합니다. Java와 다르게 특정 요소에 접근할 때 [ ] 로 접근할 수 있습니다.
 
   ```kotlin
-  val foods = mutableListOf("라면", "갈비", "밥)
+  val foods = mutableListOf("라면", "갈비", "밥")
   
   foods.add("초밥")      // [라면, 갈비, 밥, 초밥]
   foods.removeAt(0)     //  [갈비, 밥, 초밥]
