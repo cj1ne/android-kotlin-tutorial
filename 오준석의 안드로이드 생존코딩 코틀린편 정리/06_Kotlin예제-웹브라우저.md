@@ -122,7 +122,7 @@ urlEditText.setOnEditorActionListener { _, actionId, _ -> // (1)
 }
 ```
 
-1. EditText의 **setOnEditorActionListener**는 EditText가 선택되고 글자가 입력될 때마다 호출됩니다. 인자로는 반응한 뷰, 액션 ID, 이벤트 세 가지며, 사용하지 않는 인자는 _로 대치할 수 있습니다.
+1. EditText의 **setOnEditorActionListener**는 EditText가 선택되고 글자가 입력될 때마다 호출됩니다. 인자로는 반응한 뷰, 액션 ID, 이벤트 세 가지며, 사용하지 않는 인자는 `_`로 대치할 수 있습니다.
 2. actionId값은 상수로 정의된 값 중에 검색 버튼에 해당하는 상수와 비교하여 검색 버튼이 눌렸는지 확인합니다.
 3. 검색 창에 입력한 주소를 웹뷰에 로딩하고 true를 반환하여 이벤트를 종료합니다.
 
@@ -203,7 +203,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 </menu>
 ```
 
-앞서 생성한 **main.xml** 파일에 메뉴를 구성하기 위해서 위와 같이 코드를 작성합니다. [기능 명세](06_Kotlin예제-웹브라우저.md#기능-명세) 4), 5) 항목의 사진과 같이 **검색사이트**와 **개발자정보** **메뉴에** 각각 [네이버, 구글, 다음]과 [전화하기, 문자 보내기, 이메일 보내기]  아이템이 추가되도록 한 것 입니다.  마지막 아이템은 기능 명세 2) 를 만들기 위한 것이며 **ifRoom** 속성은 공간에 여유가 있을 때 아이콘을 노출시키는 것을 의미합니다.
+앞서 생성한 **main.xml** 파일에 메뉴를 구성하기 위해서 위와 같이 코드를 작성합니다. [기능 명세](06_Kotlin예제-웹브라우저.md#기능-명세) 4), 5) 항목의 사진과 같이 **검색사이트**와 **개발자정보** **메뉴에** 각각 < 네이버, 구글, 다음 >과 < 전화하기, 문자 보내기, 이메일 보내기 >  아이템이 추가되도록 한 것 입니다.  마지막 아이템은  [기능 명세](06_Kotlin예제-웹브라우저.md#기능-명세) 2) 를 만들기 위한 것이며 **ifRoom** 속성은 공간에 여유가 있을 때 아이콘을 노출시키는 것을 의미합니다.
 
 <br>
 
@@ -222,7 +222,7 @@ override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
 <h4>4. 옵션 메뉴 클릭 이벤트 처리</h4>
 
-옵션 메뉴를 선택했을 때의 이벤트를 처리하려면 다음과 같이 `onOptionsItemSelected( ) 메서드`를 오버라이드하여 메뉴 아이템의 ID로 구분해 처리합니다.
+옵션 메뉴를 선택했을 때의 이벤트를 처리하려면 다음과 같이 `onOptionsItemSelected( )` 메서드를 오버라이드하여 메뉴 아이템의 ID로 구분해 처리합니다.
 
 ```kotlin
 override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -286,7 +286,7 @@ menu 디렉터리에서 마우스 우클릭 후 `New → Menu resource file`을 
 
 <h4>2. 컨텍스트 메뉴 등록하기</h4>
 
-액티비티에서 다음과 같이 `onCreateContextMenu( )` 메서드를 오버라이드하여 메뉴 리소스 파일을 지정하면 메뉴가 표시됩니다. 옵션 메뉴의 `onCreaeteOptionsMenu( )` 메서드와 메서드 이름에 약간의 차이가 있습니다.
+액티비티에서 다음과 같이 `onCreateContextMenu( )` 메서드를 오버라이드하여 메뉴 리소스 파일을 지정하면 메뉴가 표시됩니다. 옵션 메뉴의 `onCreateOptionsMenu( )` 메서드와 메서드 이름에 약간의 차이가 있습니다.
 
 ```kotlin
 override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -313,7 +313,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 <h4>3. 컨텍스트 메뉴 클릭 이벤트 처리</h4>
 
-옵션 메뉴의 클릭 이벤트 처리와 동일하게 `onCotextItemSelected( )`메서드를 오버라이드하여 메뉴 아이템의 ID로 구분해 처리합니다.
+옵션 메뉴의 클릭 이벤트 처리와 동일하게 `onContextItemSelected( )`메서드를 오버라이드하여 메뉴 아이템의 ID로 구분해 처리합니다.
 
 ```kotlin
 override fun onContextItemSelected(item: MenuItem?): Boolean {

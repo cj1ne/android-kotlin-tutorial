@@ -200,7 +200,7 @@ private fun pause(){
 <h4>타이머 초기화</h4>
 
 ```kotlin
-private fun reset(){~~
+private fun reset(){
     timerTask?.cancel()
 
     // 모든 변수 초기화

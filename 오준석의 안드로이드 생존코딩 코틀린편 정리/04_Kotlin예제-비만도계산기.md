@@ -73,7 +73,7 @@
 
 <h4>기능 명세</h4>
 
-- 키와 몸무게를 입력하고 결과 버튼을 누르면 다른 홤녀에서 비만도 결과를 문자와 그림으로 보여줍니다.
+- 키와 몸무게를 입력하고 결과 버튼을 누르면 다른 화면에서 비만도 결과를 문자와 그림으로 보여줍니다.
 
 - 마지막에 입력했던 키와 몸무게는 자동으로 저장됩니다. (SharedPreference)
 
@@ -250,15 +250,13 @@ toast("$bmi")
 
 <h3>SharedPreference로 데이터 저장 및 불러오기</h3>
 
-<br>
-
 <h4>데이터 저장하기</h4>
 
 ```kotlin
 private fun saveData(height: Int, weight: Int)
 {
     val pref = PreferenceManager.getDefaultSharedPreferences(this) // (1)
-    va  editor = pref.edit()               // (2)
+    val editor = pref.edit()               // (2)
         
     editor.putInt("KEY_HEIGHT", height)    // (3)
             .putInt("KEY_WEIGHT", weight)
