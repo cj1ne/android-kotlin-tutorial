@@ -208,7 +208,11 @@ class MainActivity: AppCompatActivity(), AnkoLogger {
 Anko에서 제공하는 `dip()` 및 `sp()`함수를 사용하면 **해당 단위에서 픽셀 단위 양방향으로 매우 간단히 변환**할 수 있습니다. 이 함수들은 Context를 상속한 클래스 혹은 커스텀 뷰 클래스 내에서 사용할 수 있습니다.
 
 ```kotlin
+// 100dp를 픽셀 단위로 변환
+val dpInPixel = dip(100)
 
+// 300px를 sp 단위로 변환
+val pxInSp = px2sp(80)
 ```
 
 <br>
@@ -266,4 +270,150 @@ doIfSdk(Build.VERSION_CODES.N) {
 <br>
 
 <h2>2. Anko Layouts</h2>
+
+XML로 작성된 레이아웃은 소스 코드(자바 또는 코틀린 코드)를 사용하여 화면을 구성한 경우에 비해 성능이 저하되고, 파싱 과정에서 자원이 더 필요한 만큼 배터리도 더 많이 소모합니다. **Anko Layouts**은 소스 코드로 화면을 구성할 때 유용한 함수들을 제공하며, XML 레이아웃을 작성하는 것 처럼 편리하게 화면을 구성할 수 있습니다.
+
+<br>
+
+Anko Layouts을 사용하려면 이를 사용할 **모듈 수준의 build.gralde**에 의존성을 추가하면 되며, 애플리케이션의 **minSdkVersion**에 따라 라이브러리가 달라집니다. 
+
+| minSdkVersion | Anko Layouts 라이브러리 |
+| ------------- | ----------------------- |
+| 15이상 19미만 | anko-sdk15              |
+| 19이상 21미만 | anko-sdk19              |
+| 21이상 23미만 | anko-sdk21              |
+| 23이상 25미만 | anko-sdk23              |
+| 25이상 미만   | anko-sdk25              |
+
+<br>
+
+```kotlin
+android {
+    compileSdkVersion 28
+    defaultConfig {
+      
+        minSdkVersion 26
+        targetSdkVersion 28
+        ...
+    }
+    ...
+}
+
+dependencies {
+    // minSdkVersion에 맞춰 Anko Layouts 라이브러리 추가
+    implementation "org.jetbrains.anko:anko-sdk25:0.10.5"
+}
+```
+
+<br>
+
+<br>
+
+<h3>DSL로 화면 구성하기</h3>
+
+Anko Layouts을 사용하면 **소스 코드에서 화면을 DSL 형태로 정의할** 수 있습니다. XML 레이아웃으로 정의할 때보다 더 간단하게 화면을 구성할 수 있습니다.
+
+<br>
+
+<h4>1. 액티비티에서 사용하기</h4>
+
+DSL로 구성한 뷰는 **AnkoComponent**클래스를 컨테이너로 사용하며, **AnkoComponent.setContentView(Activity)** 함수를 통해 액티비티 화면으로 설정할 수 있습니다. 
+
+<br>
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //setContentView(R.layout.activity_main)
+        MainActivityUI().setContentView(this)
+    }
+}
+
+class MainActivityUI : AnkoComponent<MainActivity> {
+    override  fun createView(ui: AnkoContext<MainActivity>) = ui.apply {
+        verticalLayout {
+            padding = dip(12)
+
+            textView("Enter Login Credentials")
+
+            editText{
+                hint = "E-mail"
+            }
+
+            editText{
+                hint = "Password"
+            }
+
+            button("Submit")
+        }
+    }.view
+}
+```
+
+<br>
+
+<br>
+
+<h4>2. 프래그먼트에서 사용하기</h4>
+
+프래그먼트에서는 프래그먼트를 위한 AnkoComponent를 만들고, **onCreateView()에서 createView()를 직접 호출**하여 프로그먼트의 화면으로 사용할 뷰를 반환하면 됩니다.
+
+```kotlin
+class MainFragment: Fragment() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        
+        // createView() 함수를 호출하여 뷰를 반환
+        return MainFragmentUI().createView(AnkoContext.create(context, this))
+    }
+}
+
+// 프래그먼트를 위한 AnkoComponent 생성
+class MainFragmentUI: AnkoComponent<MainFragment> {
+    override fun createView(ui: AnkoContext<MainFragment>) = ui.apply {
+        verticalLayout {
+            padding = dip(12)
+
+            textView("Enter Login Credentials")
+
+            editText{
+                hint = "E-mail"
+            }
+
+            editText{
+                hint = "Password"
+            }
+
+            button("Submit")
+        }
+    }.view
+}
+```
+
+<br>
+
+<br>
+
+<h3>Anko Support Plugin</h3>
+
+**Anko Support Plugin**의 프리뷰 기능을 사용하면 AnkoComponent로 작성한 화면이 어떻게 표시되는지 미리 확인할 수 있습니다. 플러그인 설치 방법은 다음과 같습니다.
+
+```
+Ctrl+Shift+A -> plugins 검색 -> Install jetBrains Plugin... -> Anko Support 검색 및 설치
+```
+
+<br>
+
+설치가 완료되면, 프리뷰 기능으로 확인하고 싶은 파일을 연 후  AnkoComponent의 구현부 내부 아무곳에 커서를 두고 다음과 같이 선택하여 레이아웃 프리뷰 창을 띄웁니다. 이 때 **구현부는 별도의 파일을 가지는 외부 클래스**로 구성되어야 합니다.
+
+```
+View > Tools Windows > Anko Layout Preview
+```
+
+<br>![](https://i.imgur.com/upQEk7L.png)
+
+<br>
+
+<br>
 
