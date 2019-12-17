@@ -14,4 +14,7 @@ ext {
     okHttpVersion = '3.8.1'
     retrofitVersion = '2.3.0'
     supportLibVersion = '27.0.2'
+
+    // Kotlin
+    kotlinVersion = '1.1.60'
 }
