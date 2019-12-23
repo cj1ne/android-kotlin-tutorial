@@ -50,6 +50,8 @@ dependencies {
     implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rxBindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rxBindingVersion"
 
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
