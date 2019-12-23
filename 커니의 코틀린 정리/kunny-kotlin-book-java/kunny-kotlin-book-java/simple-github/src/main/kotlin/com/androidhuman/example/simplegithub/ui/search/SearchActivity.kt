@@ -21,18 +21,13 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_search.*
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
-
-    internal lateinit var rvList: RecyclerView
-
-    internal lateinit var progress: ProgressBar
-
-    internal lateinit var tvMessage: TextView
 
     internal lateinit var menuSearch: MenuItem
 
@@ -48,14 +43,10 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        rvList = findViewById(R.id.rvActivitySearchList)
-        progress = findViewById(R.id.pbActivitySearch)
-        tvMessage = findViewById(R.id.tvActivitySearchMessage)
-
         adapter = SearchAdapter()
         adapter.setItemClickListener(this)
-        rvList.layoutManager = LinearLayoutManager(this)
-        rvList.adapter = adapter
+        rvActivitySearchList.layoutManager = LinearLayoutManager(this)
+        rvActivitySearchList.adapter = adapter
 
         api = GithubApiProvider.provideGithubApi(this)
     }
@@ -152,20 +143,20 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ItemClickListener {
     }
 
     private fun showProgress() {
-        progress.visibility = View.VISIBLE
+        pbActivitySearch.visibility = View.VISIBLE
     }
 
     private fun hideProgress() {
-        progress.visibility = View.GONE
+        pbActivitySearch.visibility = View.GONE
     }
 
     private fun showError(message: String?) {
-        tvMessage.text = message ?: "Unexpected error."
-        tvMessage.visibility = View.VISIBLE
+        tvActivitySearchMessage.text = message ?: "Unexpected error."
+        tvActivitySearchMessage.visibility = View.VISIBLE
     }
 
     private fun hideError() {
-        tvMessage.text = ""
-        tvMessage.visibility = View.GONE
+        tvActivitySearchMessage.text = ""
+        tvActivitySearchMessage.visibility = View.GONE
     }
 }
