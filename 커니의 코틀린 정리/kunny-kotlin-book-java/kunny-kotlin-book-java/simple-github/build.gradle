@@ -59,9 +59,12 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rxBindingVersion"
 
     implementation "android.arch.lifecycle:extensions:$archComponentVersion"
+    implementation "android.arch.persistence.room:runtime:$archComponentVersion"
+    implementation "android.arch.persistence.room:rxjava2:$archComponentVersion"
 
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
     kapt "android.arch.lifecycle:compiler:$archComponentVersion"
+    kapt "android.arch.persistence.room:compiler:$archComponentVersion"
 
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 }

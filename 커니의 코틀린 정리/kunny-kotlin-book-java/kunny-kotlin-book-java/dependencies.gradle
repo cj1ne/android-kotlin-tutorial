@@ -23,5 +23,5 @@ ext {
     kotlinVersion = '1.1.60'
 
     // AAC
-    archComponentVersion = '1.0.0'
+    archComponentVersion = '1.1.1'
 }
